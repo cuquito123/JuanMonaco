@@ -1,0 +1,16 @@
+function [M,N]=P1_ej2(x,y)
+
+  x=[2;4.1416;3.0708;5.2124;6.2832]
+  y=[0.9093;0.8739;0.4167;1.8936;2.4142]
+
+  N=length(x)
+  M=zeros(N)
+  M(:,1)=y
+  for c=2:N
+    for f=c:N
+      M(f,c)=(M(f,c-1)-M(f-1,c-1))/(x(f)-x(f-c+1));
+      end
+    end
+  end    %La matriz es triang. inf. entonces para armar el pol. para adelante debo tomar los elementos de la diaognal ppal.
+
+  b=diag(M)
