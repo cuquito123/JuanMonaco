@@ -1,0 +1,90 @@
+clear,clc
+### PARCIALITO ###
+
+NOTAS=randi(10,86,7);
+
+### INCISO A1 ###
+
+PROMEDIO= zeros(86,1);
+for i=1:86;
+   Prom_alum=(sum(NOTAS(i,:))/7);
+   PROMEDIO(i,1)=Prom_alum;
+  end
+
+
+
+### INCISO A2 ###
+
+Nota_maxima=zeros(86,1);
+for i=1:86;
+  Nota_maxima(i,1)=NOTAS(i,1);
+  end
+for i=1:86;
+  for j=1:7;
+  if NOTAS(i,j)>Nota_maxima(i,1);
+    Nota_maxima(i,1)=NOTAS(i,j);
+  end
+end
+end
+
+NOTAS;
+Nota_maxima;
+
+### INCISO A3 ###
+
+Prom_materia=zeros(1,7);
+for j=1:7;
+  Prom_materia(1,j)=((sum(NOTAS(:,j)))/86);
+end
+Prom_materia;
+
+### INCISO B1 ###
+
+Prom_materia_mas_bajo=Prom_materia(1,1); %Supongo que el primero es el menor
+for j=1:7;
+  if Prom_materia(1,j)<Prom_materia_mas_bajo;
+    Prom_materia_mas_bajo=Prom_materia(1,j);
+  end
+end
+Prom_materia;
+Prom_materia_mas_bajo;
+
+### INCISO B2 ### %Considero quien sacó 6, aprobó. Asigno el valor 1 aprobados y 0 desaprobado.
+
+Alum_aprobados=zeros(86,1);
+for i=1:86;
+  for j=1:7;
+    if NOTAS(i,:)>=6;
+      Alum_aprobados(i,1)=1;
+    elseif NOTAS(i,j)<6;
+      Alum_aprobados(i,1)=0;
+    endif
+  endfor
+end
+Alum_aprobados;
+NOTAS;
+
+Notas_alum_aprobado=zeros(86,7);
+for i=1:86;
+  if NOTAS(i,:)>=6;
+Notas_alum_aprobado(i,:)=NOTAS(i,:);
+elseif NOTAS(i,j)<6;
+Notas_alum_aprobado(i,:)=zeros(1,7);
+end
+end
+Notas_alum_aprobado;
+
+
+### INCISO B3 ###
+
+Mejor_alumno=PROMEDIO(1,1);
+for i=1:86;
+  if PROMEDIO(i,1)>Mejor_alumno;
+    Mejor_alumno=PROMEDIO(i,1);
+    alumno=i;                         %Sirve para saber en que valor de i de cumple la condición.
+  endif
+  end
+  Mejor_alumno;
+  PROMEDIO;
+  
+  
