@@ -1,0 +1,24 @@
+AA=[16 -8 4 -2 1; 1 1 1 1 1; 4*27 27 6 1 0; 0 0 0 1 0; 4^4 4^3 16 4 1];
+Y=[-24;0;-91;5;-210];
+
+%function Coef = Parcial91225 (A, y)
+%Coef = inv(A)*y; %A\y ( \ == alt+92 ) (^ == alt + 94)
+%end
+
+Coef = Parcial91225 (AA, Y)
+
+% An,[An-1, ... , A0]
+polyval(Coef,[-2 1 4])
+
+
+P_der=@(x) Coef(4) + 2*Coef(3)*x + 3*Coef(2)*x.^2 + 4*Coef(1)*x.^3;
+XXX = linspace(-2,4)
+YYY = polyval(Coef, XXX) %evaluo mi polinomio
+
+XXXp= linspace(0,3)
+YYYp= P_der(XXXp) %evaluo mi derivada
+
+figure 1
+hold on
+plot(XXX,YYY)
+plot([-2 1 4],[-24 0 -210],'r*')
